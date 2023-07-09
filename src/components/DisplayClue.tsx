@@ -22,7 +22,11 @@ export const DisplayClue: FC<{
           ? answerFromClue(clue, board.cells)
           : `${clue.cells.length} letter word`}
       </div>
-      <button className="bg-slate-200 hover:bg-slate-400 py-1 px-4 rounded-sm" type="button" onClick={() => setShowing(true)}>
+      <button
+        className="bg-slate-200 hover:bg-slate-400 py-1 px-4 rounded-sm"
+        type="button"
+        onClick={() => setShowing(true)}
+      >
         Reveal
       </button>
     </div>

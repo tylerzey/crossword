@@ -1,13 +1,13 @@
 import type { FC } from "react";
 import fs from "fs";
 import { toSchema } from "@/lib/toSchema";
+import path from "path";
 
 import { DisplayClue } from "@/components/DisplayClue";
 
 const Page = async ({ params: { id } }: { params: { id: string } }) => {
-  const json = toSchema.parse(
-    JSON.parse(fs.readFileSync("src/content/mini/" + id + ".json", "utf8")),
-  );
+  const filePath = path.resolve(".", "src/content/mini/" + id + ".json");
+  const json = toSchema.parse(JSON.parse(fs.readFileSync(filePath, "utf8")));
   const board = json.body[0]!;
 
   return (
