@@ -31,10 +31,18 @@ export const Board: FC<{
                       type="button"
                       onClick={() => onSetNumberShowing(n)}
                       className={clsx(
-                        "w-8 h-8 flex justify-center items-center text-xs border border-black border-1",
+                        "w-8 h-8 flex justify-center items-center text-xs border border-black border-1 relative",
                         hasAnswer ? "bg-white" : "bg-black",
                       )}
                     >
+                      {cell.label ? (
+                        <span
+                          style={{ lineHeight: "8px" }}
+                          className="text-[7px] absolute top-0 left-0"
+                        >
+                          {cell.label}
+                        </span>
+                      ) : null}
                       {!hasAnswer
                         ? null
                         : showingArr.includes(n)

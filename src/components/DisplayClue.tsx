@@ -17,6 +17,7 @@ export const DisplayClue: FC<{
   return (
     <div className="flex flex-col gap-1">
       <div className="font-medium text-base">
+        {clue.label ? clue.label : ""}{" "}
         {"formatted" in clueTxt ? clueTxt.formatted : clueTxt.plain}
       </div>
       <div className="flex gap-2 text-xs">
