@@ -26,8 +26,9 @@ export const Board: FC<{
                   const hasAnswer = !!answer;
 
                   return (
-                    <div
+                    <button
                       key={col}
+                      type="button"
                       onClick={() => onSetNumberShowing(n)}
                       className={clsx(
                         "w-8 h-8 flex justify-center items-center text-xs border border-black border-1",
@@ -39,7 +40,7 @@ export const Board: FC<{
                         : showingArr.includes(n)
                         ? answer
                         : "😶‍🌫️"}
-                    </div>
+                    </button>
                   );
                 })}
             </div>
