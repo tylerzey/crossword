@@ -24,13 +24,13 @@ export const DisplayClue: FC<{
             : `${clue.cells.length} letter word`}
         </div>
         <div>{clue.direction}</div>
-        <button
+        {showing?null:<button
           className="bg-slate-200 hover:bg-slate-400 py-[1px] px-4 rounded-sm"
           type="button"
           onClick={() => setShowing(true)}
         >
           Reveal
-        </button>
+        </button>}
       </div>
     </div>
   );
