@@ -3,7 +3,11 @@ import { board } from "@/lib/toSchema";
 import { z } from "zod";
 import clsx from "clsx";
 
-export const Board: FC<{ board: z.infer<typeof board> }> = ({ board }) => {
+export const Board: FC<{
+  board: z.infer<typeof board>;
+  onSetNumberShowing: (n: number) => void;
+  showingArr: number[];
+}> = ({ showingArr, board, onSetNumberShowing }) => {
   const { height, width } = board.dimensions;
 
   return (
@@ -16,19 +20,25 @@ export const Board: FC<{ board: z.infer<typeof board> }> = ({ board }) => {
               {Array(height)
                 .fill(0)
                 .map((_, col) => {
-                  const cell = board.cells[row * width + col];
+                  const n = row * width + col;
+                  const cell = board.cells[n];
                   const answer = cell.answer;
                   const hasAnswer = !!answer;
 
                   return (
                     <div
                       key={col}
+                      onClick={() => onSetNumberShowing(n)}
                       className={clsx(
                         "w-8 h-8 flex justify-center items-center text-xs border border-black border-1",
                         hasAnswer ? "bg-white" : "bg-black",
                       )}
                     >
-                      <div className="">{answer}</div>
+                      {!hasAnswer
+                        ? null
+                        : showingArr.includes(n)
+                        ? answer
+                        : "😶‍🌫️"}
                     </div>
                   );
                 })}
