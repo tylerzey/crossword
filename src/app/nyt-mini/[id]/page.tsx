@@ -1,13 +1,10 @@
-import type { FC } from "react";
-import fs from "fs";
-import { toSchema } from "@/lib/toSchema";
-import path from "path";
-
 import { PuzzleLandingPage } from "@/components/PuzzleLandingPage";
+import { storeCluesFromPuzzle } from "@/lib/storeCluesFromPuzzle";
+import { loadPuzzle } from "@/lib/loadPuzzle";
 
 const Page = async ({ params: { id } }: { params: { id: string } }) => {
-  const filePath = path.resolve(".", "src/content/mini/" + id + ".json");
-  const json = toSchema.parse(JSON.parse(fs.readFileSync(filePath, "utf8")));
+  storeCluesFromPuzzle("nyt-mini/" + id + ".json");
+  const json = loadPuzzle("nyt-mini", id);
   const board = json.body[0]!;
 
   return (

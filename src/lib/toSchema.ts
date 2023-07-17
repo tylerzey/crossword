@@ -122,7 +122,7 @@ export const board = z.object({
   }),
 });
 
-export const toSchema = z.object({
+export const puzzleSchema = z.object({
   body: z.array(board),
   constructors: z.array(z.string()),
   copyright: z.string(),
@@ -130,4 +130,16 @@ export const toSchema = z.object({
   lastUpdated: z.string(),
   publicationDate: z.string(),
   subcategory: z.number(),
+});
+export type Puzzle = z.infer<typeof puzzleSchema>;
+
+export const clueSchema = z.object({
+  text: z.string(),
+  answer: z.string(),
+  direction: z.string(),
+  label: z.string(),
+  authors: z.string().array(),
+  copyright: z.string(),
+  publicationDate: z.string(),
+  boardLocation: z.string(),
 });
